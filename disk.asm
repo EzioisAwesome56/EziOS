@@ -24,7 +24,7 @@ disk_load:
 	ret
 	
 disk_error:
-	mov si, DISK_ERROR_MSG
+	mov si, Sector_error
 	call print_string
 	; halt the system i guess
 	cli
@@ -32,3 +32,5 @@ disk_error:
 	
 DISK_ERROR_MSG:
 	db "Disk Read Error!",0
+Sector_error:
+	db "Error loading Sectors!",0
