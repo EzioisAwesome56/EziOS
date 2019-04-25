@@ -17,6 +17,12 @@ disk_load:
 	; was there a disk error?
 	jc disk_error
 	
+	; cleaning up
+	pop dx
+	cmp dh, al ; did the number of sectors read equal the expected amount?
+	jne disk_error ; if it didnt, display disk error
+	ret
+	
 disk_error:
 	mov si, DISK_ERROR_MSG
 	call print_string

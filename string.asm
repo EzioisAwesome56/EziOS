@@ -24,5 +24,10 @@ print_string:
 	jmp .loop
 	
 .done:
+	; print a line break
+	mov al, 0xA
+	int 0x10
+	mov al, 0xD
+	int 0x10
 	; return to caller
 	ret
