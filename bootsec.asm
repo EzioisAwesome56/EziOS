@@ -2,15 +2,22 @@
 ; copyright EzioSoft 2019
 [org 0x7c00]
 
-; thing for bios teletype
-mov ah, 0x0e
-; put a letter in al
-mov al, 'f'
-; make bios call
-int 0x10
 
-loop:
-jmp loop
+; put string in si
+mov si, weed
+call print_string
+
+; halt the system lol
+cli
+hlt
+
+; includes
+%include "string.asm"
+
+; string
+weed:
+	db 'sonya driving',0
+	
 ; fill empty space
 times 510-($-$$) db 0
 ; magic bootable thing
