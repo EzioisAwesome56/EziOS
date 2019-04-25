@@ -17,12 +17,14 @@ mov bp, 0x8000 ; moving the stack pointer is probably a good idea
 mov sp, bp ; which we do here instead of later
 
 ; try to load sector 2
+mov bx, 0x0000
+mov es, bx
 mov bx, 0x9000
-mov dh, 1 ; load only one sector
+mov dh, 1
 mov dl, [bootdrive]
 call disk_load
 ; if the system didnt halt, it probably worked
-mov si, [0x9000]
+mov si, 0x9000
 call print_string
 
 ; halt the system lol
@@ -49,4 +51,5 @@ times 510-($-$$) db 0
 dw 0xaa55
 
 ; anything past this is NOT in boot sector
-db "Holy shit I read from the hard disk!!!!",0
+db "Disk io WORKS!",0
+times 497 db 0

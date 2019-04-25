@@ -31,3 +31,12 @@ print_string:
 	int 0x10
 	; return to caller
 	ret
+	
+; hex printing
+print_hex:
+	mov si, hexout
+	call print_string
+	ret
+	
+hexout:
+	db '0x0000', 0
