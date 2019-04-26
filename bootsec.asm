@@ -11,7 +11,7 @@ mov [bootdrive], dl
 ; put boot message in si
 mov si, bootmsg
 call print_string
-mov si, realmode
+mov si, copyright
 call print_string
 
 mov bp, 0x8000 ; moving the stack pointer is probably a good idea
