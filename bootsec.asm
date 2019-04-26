@@ -37,8 +37,8 @@ hlt
 ; strings
 bootmsg:
 	db 'EziOS v1.0 Bootloader',0
-realmode:
-	db "Now protecting...", 0
+copyright:
+	db "Copyright EzioSoft 2019", 0
 ; vars
 bootdrive:
 	db 0
@@ -49,3 +49,4 @@ times 510-($-$$) db 0
 dw 0xaa55
 
 ; anything past this is NOT in boot sector
+times 512 db 255
