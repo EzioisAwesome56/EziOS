@@ -38,7 +38,7 @@ hlt
 bootmsg:
 	db 'EziOS v1.0 Bootloader',0
 copyright:
-	db "Copyright EzioSoft 2019", 0
+	db "Copyright EzioSoft 2018-2019", 0
 ; vars
 bootdrive:
 	db 0
