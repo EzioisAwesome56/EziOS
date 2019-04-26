@@ -1,7 +1,7 @@
+@echo off
 Rem EzioOS build script
 rem because nasm is annoying and doesnt overwrite the old file
 rem uyay
-@echo off
 title EzioOS build script
 echo Deleting previous build
 del bootsect.bin

@@ -1,5 +1,6 @@
-; EzioOS bootloader
+; EziOS bootloader
 ; copyright EzioSoft 2019
+[bits 16]
 [org 0x7c00]
 
 ; bios tells us our boot drive via dl
@@ -24,8 +25,11 @@ mov dh, 1
 mov dl, [bootdrive]
 call disk_load
 ; if the system didnt halt, it probably worked
-mov si, 0x9000
-call print_string
+;mov si, 0x9000
+;call print_string
+
+; pray its all okay and jump to command handler
+jmp 0x000:0x9000
 
 ; halt the system lol
 cli
@@ -37,10 +41,11 @@ hlt
 
 ; strings
 bootmsg:
-	db 'EzioOS v1.0 Bootloader',0
+	db 'EziOS v1.0 Bootloader',0
 realmode:
 	db "Real mode initialization", 0
-
+cmdhand:
+	db "Loading real mode command handler...",0
 ; vars
 bootdrive:
 	db 0
@@ -51,5 +56,9 @@ times 510-($-$$) db 0
 dw 0xaa55
 
 ; anything past this is NOT in boot sector
-db "Disk io WORKS!",0
-times 497 db 0
+; try printing
+mov si, cmdhand
+call 0x0000:print_string
+hlt
+
+times 512 db 5
