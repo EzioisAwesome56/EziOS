@@ -28,8 +28,6 @@ call disk_load
 ;mov si, 0x9000
 ;call print_string
 
-; pray its all okay and jump to command handler
-jmp 0x000:0x9000
 
 ; halt the system lol
 cli
@@ -44,8 +42,6 @@ bootmsg:
 	db 'EziOS v1.0 Bootloader',0
 realmode:
 	db "Real mode initialization", 0
-cmdhand:
-	db "Loading real mode command handler...",0
 ; vars
 bootdrive:
 	db 0
@@ -56,9 +52,5 @@ times 510-($-$$) db 0
 dw 0xaa55
 
 ; anything past this is NOT in boot sector
-; try printing
-mov si, cmdhand
-call 0x0000:print_string
-hlt
-
-times 512 db 5
+; todo - put protected mode kernel here
+times 512 db 255
