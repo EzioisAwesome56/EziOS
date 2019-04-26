@@ -23,11 +23,8 @@ mov es, bx
 mov bx, 0x9000
 mov dh, 1
 mov dl, [bootdrive]
+mov cl, 0x02 ; sector 2
 call disk_load
-; if the system didnt halt, it probably worked
-;mov si, 0x9000
-;call print_string
-
 
 ; halt the system lol
 cli
@@ -41,7 +38,7 @@ hlt
 bootmsg:
 	db 'EziOS v1.0 Bootloader',0
 realmode:
-	db "Real mode initialization", 0
+	db "Now protecting...", 0
 ; vars
 bootdrive:
 	db 0
@@ -52,5 +49,3 @@ times 510-($-$$) db 0
 dw 0xaa55
 
 ; anything past this is NOT in boot sector
-; todo - put protected mode kernel here
-times 512 db 255

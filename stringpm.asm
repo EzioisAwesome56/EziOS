@@ -15,7 +15,7 @@ printstring_pm_loop:
 	cmp al, 0 ; are we at end of string????
 	je done
 	
-	move [edx], ax
+	mov [edx], ax
 	
 	add ebx, 1
 	add edx, 2
